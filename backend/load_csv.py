@@ -31,9 +31,6 @@ def try_float(value):
     except:
         return None
 
-from pathlib import Path
-
-csv_path = Path(__file__).resolve().parent.parent / "dataset" / "diem_thi_thpt_2024.csv"
 
 if __name__ == "__main__":
-    load_data_from_csv(str(csv_path))
+    load_data_from_csv('dataset/diem_thi_thpt_2024.csv')
