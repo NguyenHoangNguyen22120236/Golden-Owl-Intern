@@ -1,0 +1,1 @@
+from .diem_thi import DiemThi, Base
