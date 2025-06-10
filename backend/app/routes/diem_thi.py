@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from db import get_db
-from controllers.diem_thi import DiemThiController
+from app.db import get_db
+from app.controllers.diem_thi import DiemThiController
 
 diem_thi_router = APIRouter()
 

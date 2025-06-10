@@ -1,4 +1,4 @@
-from models.diem_thi import DiemThi
+from app.models.diem_thi import DiemThi
 from fastapi import HTTPException
 
 class DiemThiController:

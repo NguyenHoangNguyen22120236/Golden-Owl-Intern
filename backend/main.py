@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.diem_thi import diem_thi_router  # import your route module
+from app.routes.diem_thi import diem_thi_router  # import your route module
 
 app = FastAPI(
     title="Diem Thi API",
