@@ -18,7 +18,7 @@ function SearchScores() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/diem-thi/sbd/${regNumber.trim()}`
+        `${process.env.REACT_APP_BACKEND_URL}/diem-thi/sbd/${regNumber.trim()}`
       );
       const data = await response.json();
       if (!response.ok) {

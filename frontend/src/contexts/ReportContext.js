@@ -13,7 +13,7 @@ export const ReportProvider = ({ children }) => {
 
   useEffect(() => {
     if (!reportData) {
-      axios.get('http://127.0.0.1:8000/diem-thi/report/score-levels-by-subject')
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/diem-thi/report/score-levels-by-subject`)
         .then((res) => {
           setReportData(res.data);
           localStorage.setItem('reportData', JSON.stringify(res.data));

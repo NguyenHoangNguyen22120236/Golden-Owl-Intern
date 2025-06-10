@@ -6,7 +6,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/diem-thi/top-10-group-a') // Make sure this is your actual API route
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/diem-thi/top-10-group-a`) // Make sure this is your actual API route
       .then((res) => {
         setStudents(res.data.slice(0, 10)); // Get top 10 only
         setLoading(false);
