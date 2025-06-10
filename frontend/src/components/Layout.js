@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Sidebar from "./Sidebar";
 import "../styles/Sidebar.css";
 import "../styles/Layout.css";
