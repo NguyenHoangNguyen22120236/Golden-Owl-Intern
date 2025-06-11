@@ -1,15 +1,18 @@
+# Demo
+
+## 👉 Live Demo Link: [https://frontend-production-46c0.up.railway.app/](https://frontend-production-46c0.up.railway.app/)
+## 📽️ Video Demo: [Youtube Link](https://www.youtube.com/watch?v=dWhvKQYKD1c)
+
 # Project Setup Guide (FastAPI + React.js)
 
 This guide explains how to set up and run both the backend (FastAPI) and frontend (React.js) locally on your machine.
-
-## Live Demo Link: [https://frontend-production-46c0.up.railway.app/](https://frontend-production-46c0.up.railway.app/)
-## Video Demo: 
 
 ## Prerequisites
 
 - **Python 3.8+** (for backend)
 - **Node.js 16+** (for frontend)
-- **PostgreSQL** (or your preferred database)
+- **PostgreSQL** (for database)
+- **Docker** (for set up backend)
 - **pip** (Python package manager)
 - **npm** (Node package manager)
 
