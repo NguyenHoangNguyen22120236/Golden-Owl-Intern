@@ -2,6 +2,9 @@
 
 This guide explains how to set up and run both the backend (FastAPI) and frontend (React.js) locally on your machine.
 
+## Live Demo Link: [https://frontend-production-46c0.up.railway.app/](https://frontend-production-46c0.up.railway.app/)
+## Video Demo: 
+
 ## Prerequisites
 
 - **Python 3.8+** (for backend)
@@ -33,18 +36,31 @@ This guide explains how to set up and run both the backend (FastAPI) and fronten
 4. **Set up environment variables**  
    Create a `.env` file in the `backend` directory with your configuration:
     ```env
-    DATABASE_URL=postgresql://user:password@localhost:5432/dbname
-    SECRET_KEY=your-secret-key
-    ALGORITHM=HS256
-    ACCESS_TOKEN_EXPIRE_MINUTES=30
+    # PostgreSQL Database Configuration
+    POSTGRES_USER=postgres_username
+    POSTGRES_PASSWORD=postgres_password
+    POSTGRES_DB=database_name
+    COMPOSE_PROJECT_NAME=project_name
+
+    # Full database URL (used by backend to connect to PostgreSQL)
+    DATABASE_URL=postgresql://<postgres_username>:<postgres_password>@localhost:5433/<database_name>
+
+    # Frontend URL (used for CORS or redirects)
+    FRONTEND_URL=http://localhost:3000
     ```
 
-5. **Run database migrations (if using Alembic)**
+5. **Run PostgreSQL using Docker**
+    ```bash
+    docker-compose up -d
+    ```
+
+6. **Run database migrations**
     ```bash
     alembic upgrade head
+    python load_csv.py  #To load csv data to database
     ```
 
-6. **Start the backend server**
+7. **Start the backend server**
     ```bash
     uvicorn main:app --reload
     ```
@@ -65,9 +81,9 @@ This guide explains how to set up and run both the backend (FastAPI) and fronten
     ```
 
 3. **Set up environment variables**  
-   Create a `.env` file in the [frontend](http://_vscodecontentref_/0) directory with your configuration:
+   Create a `.env` file in the `frontend` directory with your configuration:
     ```env
-    REACT_APP_API_URL=http://localhost:8000
+    REACT_APP_BACKEND_URL=http://localhost:8000
     ```
 
 4. **Start the frontend development server**
@@ -78,22 +94,6 @@ This guide explains how to set up and run both the backend (FastAPI) and fronten
 
 ---
 
-## Docker Setup (Alternative)
-
-If you prefer using Docker:
-
-1. **Build and start containers**
-    ```bash
-    docker-compose up --build
-    ```
-
-2. **Access services**
-    - Backend: [http://localhost:8000](http://localhost:8000)
-    - Frontend: [http://localhost:3000](http://localhost:3000)
-    - Database: PostgreSQL on port 5432
-
----
-
 ## Project Structure
     .
     ├── backend/               # FastAPI backend
@@ -101,7 +101,10 @@ If you prefer using Docker:
     │   ├── alembic/           # Database migrations
     │   ├── .env               # Environment variables
     │   ├── requirements.txt   # Python dependencies
-    │   └── main.py            # FastAPI entry point
+    │   ├── main.py            # FastAPI entry point
+    |   ├── dataset            # Dataset of CSV file
+    |   ├── load_csv.py        # Load CSV data to database
+    |   └── docker-compose.yml     # Docker configuration
     │
     ├── frontend/              # React frontend
     │   ├── public/            # Static files
@@ -109,7 +112,6 @@ If you prefer using Docker:
     │   ├── .env               # Frontend environment variables
     │   └── package.json       # Node.js dependencies
     │
-    ├── docker-compose.yml     # Docker configuration
     └── README.md              # This file
 
 ## Troubleshooting
@@ -122,7 +124,7 @@ If you prefer using Docker:
 **Frontend can't connect to backend:**
 - Verify backend is running
 - Check CORS settings in FastAPI
-- Ensure `REACT_APP_API_URL` is correct
+- Ensure `REACT_APP_BACKEND_URL` is correct
 
 **Database issues:**
 - Run `alembic upgrade head` to apply migrations
